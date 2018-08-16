@@ -8,8 +8,6 @@ def print_slowly(text):
         sleep(0.8)
 
 
-
-
 def checkHistory():
   lines = []
   with open("history.txt", 'r') as f1:
@@ -38,8 +36,23 @@ def resMethod():
 #      if l1 in list2:
 #        
 
-L = ["a","b","c"]
+def readHistory():
+    songs = []
+    listoflines = []
+    numberoflines = -5
+    with open("history.txt", 'r') as f1:
+      for line in f1:
+        line = line.rstrip()
+        listofcurrentline = line.split(',')    
+        listoflines.append(listofcurrentline)
+      for l in listoflines[numberoflines:]:
+        songs.extend(l)
+      return songs
 
-st = ', '.join(L)
+    # if len(listoflines)<5:
+    #   return inHistory(output, lines)
+    # else:
+    #   return inHistory(output, lines[-5:])
 
-print st
+numberoflines =[]
+print readHistory()
