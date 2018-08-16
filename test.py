@@ -36,23 +36,25 @@ def resMethod():
 #      if l1 in list2:
 #        
 
-def readHistory():
-    songs = []
-    listoflines = []
-    numberoflines = -5
-    with open("history.txt", 'r') as f1:
-      for line in f1:
-        line = line.rstrip()
-        listofcurrentline = line.split(',')    
-        listoflines.append(listofcurrentline)
-      for l in listoflines[numberoflines:]:
-        songs.extend(l)
-      return songs
+def getSong(numbers, fastOrSlow, fast, slow, history):
+  generated = []
+  songlist = [] # which library to check
+  if fastOrSlow == 0:
+    songlist = fast
+  else:
+    songlist = slow
+  rep = numbers[fastOrSlow]
+  count = 0
+  while count < rep:
+    a = random.choice(songlist)
+    if a not in history and a not in generated:   
+      count += 1
+      generated.append(a)
+  return generated
 
-    # if len(listoflines)<5:
-    #   return inHistory(output, lines)
-    # else:
-    #   return inHistory(output, lines[-5:])
+numbers = [2,2]
+fast = ["a","b","c","d"]
+slow = ["1","2","3","4","5"]
+history = ["a","1"]
 
-numberoflines =[]
-print readHistory()
+print getSong(numbers, 0, fast, slow, history) 
